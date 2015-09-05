@@ -1,26 +1,55 @@
 /**
  *
- *  Object is the 'connection' between input and output
+ *  Class controls the processing of the files
  *
  * @author Brandon Potts
  * @version August 29, 2015
  */
 public class Processing {
 
-
+    // File that contains where the results will be posted
     private FileOutput outputFile;
+    // File that contains the GIS Records
+    private FileNavigator gISRecordFile;
+    // File that contains commands
+    private FileNavigator commandFile;
 
 
     /***
-     * Class Constructor
+     * Class constructor
+     * @param gisRecordPath path to the GIS record
+     * @param commandFilePath path to the command record
      */
-    public Processing(){
+    public Processing(String gisRecordPath , String commandFilePath){
 
+        gISRecordFile = new FileNavigator(gisRecordPath);
+        commandFile = new FileNavigator(commandFilePath);
         outputFile = new FileOutput("Results.txt");
     }
 
+    /***
+     * Processes all the files in the appropriate order
+     */
+    public void processFiles(){
 
-    public void begin(){
+        begin(); // TODO I could remove this method
+
+        // Process all the record locations
+        processRecordLocations();
+    }
+
+    /***
+     * Processes all the locations of Records
+     */
+    private void processRecordLocations(){
+
+
+    }
+
+    /***
+     *
+     */
+    private void begin(){
         outputFile.printHeader();
     }
 }

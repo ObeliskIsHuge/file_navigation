@@ -7,9 +7,24 @@
  */
 public class LineParser {
 
+    private String line;
 
-    public LineParser(){
+    /***
+     * LineParser constructor
+     * @param line line that will be parsed
+     */
+    public LineParser(String line){
 
+        this.line = line;
+    }
+
+    /***
+     * Builds a GISRecord Object from a line
+     * @return GISRecord containing the data from the line
+     */
+    public GISRecord buildGISRecord(){
+
+        return null;
     }
 
 }

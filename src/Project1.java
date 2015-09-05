@@ -14,7 +14,7 @@
 
 /**
  *
- * TODO what will this file do
+ * Main method class that starts the program
  *
  * @author Brandon Potts
  * @version August 29, 2015
@@ -22,6 +22,14 @@
 public class Project1 {
 
     public static void main(String[] args) {
-	// write your code here
+
+        // Gets the gis Record and command file paths
+        String gisRecordPath = args[0];
+        String commandFilePath = args[1];
+
+        // Processes the command file
+        Processing process = new Processing(gisRecordPath , commandFilePath);
+        process.processFiles();
+
     }
 }

@@ -42,8 +42,8 @@ public class FileOutput {
 
 
     /**
-     *
      * Prints a line to the output file
+     *
      * @param line String that will be printed
      */
     public void printLine(String line){

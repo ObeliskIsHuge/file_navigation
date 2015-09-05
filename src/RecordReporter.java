@@ -7,21 +7,21 @@
  */
 public class RecordReporter {
 
-    private String offset;
-    private String fID;
+    private long offset;
+    private long fID;
 
 
-    public RecordReporter(String offset, String fID){
+    public RecordReporter(long offset, long fID){
 
         this.offset = offset;
         this.fID = fID;
     }
 
-    public String getOffset() {
+    public long getOffset() {
         return offset;
     }
 
-    public String getfID() {
+    public long getfID() {
         return fID;
     }
 

@@ -9,70 +9,80 @@ public class GISRecord {
 
 
     // Feature ID
-    private int fId;
+    private String fId;
     // Feature Name
     private String fName;
     // Feature Class
     private String fClass;
     // State Alphabetic Code
-    private char [] sAC;
+    private String sAC;
     // State Numeric Code
-    private int sNC;
+    private String sNC;
     // Country Name
     private String cName;
     // County Numeric Code
-    private int cNC;
+    private String cNC;
     // Primary latitude (DMS)
-    private Coordinate pLatitudeDMS;
+    private String pLatitudeDMS;
     // Primary longitude (DMS)
-    private Coordinate pLongitudeDMS;
+    private String pLongitudeDMS;
     // Primary latitude (dec deg)
-    private double pLatitudeDD;
+    private String pLatitudeDD;
     // Primary longitude (dec deg)
-    private double pLongitudeDD;
+    private String pLongitudeDD;
     // Source latitude (DMS)
-    private Coordinate sLatitude;
+    private String sLatitude;
     // Source longitude (DMS)
-    private Coordinate sLongitude;
-
-    private int elevationInMeters;
-    private int elevationInFeet;
+    private String sLongitude;
+    // Source Latitude (dec deg)
+    private String sLatitudeDD;
+    // Source Longitude (dec deg)
+    private String sLongitudeDD;
+    // Elevation in Meters
+    private String elevationInMeters;
+    // Elevation in Feet
+    private String elevationInFeet;
+    // Map Name
     private String mapName;
+    // Date Created
     private String dateCreated;
+    // Date Edited
     private String dateEdited;
 
-    public GISRecord(int nFId , String nFName , String nFClass , char [] nSAC, int nSNC , String nCName, int nCNC,
-                     Coordinate nPLatitudeDMS , Coordinate nPLongitudeDMS , double nPLatitudeDD , double nPLongitudeDD,
-                     Coordinate nSLatitude , Coordinate nSLongitude , int nElevationInMeters, int nElevationInFeet ,
-                     String nMapName, String nDateCreated, String nDateEdited){
+    /***
+     * Class constructor
+     */
+    public GISRecord(){
 
-        fId = nFId;
-        fClass = nFClass;
-        fName = nFName;
-        sAC = nSAC;
-        sNC = nSNC;
-        cName = nCName;
-        cNC = nCNC;
-        pLatitudeDMS = nPLatitudeDMS;
-        pLongitudeDMS = nPLongitudeDMS;
-        pLatitudeDD = nPLatitudeDD;
-        pLongitudeDD = nPLongitudeDD;
-        sLatitude = nSLatitude;
-        sLongitude = nSLongitude;
-        elevationInMeters = nElevationInMeters;
-        elevationInFeet = nElevationInFeet;
-        mapName = nMapName;
-        dateCreated = nDateCreated;
-        dateEdited = nDateEdited;
+        this.fId = "";
+        this.fClass = "";
+        this.fName = "";
+        this.sAC = "";
+        this.sNC = "";
+        this.cName = "";
+        this.cNC = "";
+        this.pLatitudeDMS = "";
+        this.pLongitudeDMS = "";
+        this.pLatitudeDD = "";
+        this.pLongitudeDD = "";
+        this.sLatitude = "";
+        this.sLongitude = "";
+        this.elevationInMeters = "";
+        this.elevationInFeet = "";
+        this.mapName = "";
+        this.sLatitudeDD = "";
+        this.sLongitudeDD = "";
+        this.dateCreated = "";
+        this.dateEdited = "";
 
     }
 
 
-    public int getfId() {
+    public String getfId() {
         return fId;
     }
 
-    public void setfId(int fId) {
+    public void setfId(String fId) {
         this.fId = fId;
     }
 
@@ -92,19 +102,19 @@ public class GISRecord {
         this.fClass = fClass;
     }
 
-    public char[] getsAC() {
+    public String getsAC() {
         return sAC;
     }
 
-    public void setsAC(char[] sAC) {
+    public void setsAC(String sAC) {
         this.sAC = sAC;
     }
 
-    public int getsNC() {
+    public String getsNC() {
         return sNC;
     }
 
-    public void setsNC(int sNC) {
+    public void setsNC(String sNC) {
         this.sNC = sNC;
     }
 
@@ -116,75 +126,75 @@ public class GISRecord {
         this.cName = cName;
     }
 
-    public int getcNC() {
+    public String getcNC() {
         return cNC;
     }
 
-    public void setcNC(int cNC) {
+    public void setcNC(String cNC) {
         this.cNC = cNC;
     }
 
-    public Coordinate getpLatitudeDMS() {
+    public String getpLatitudeDMS() {
         return pLatitudeDMS;
     }
 
-    public void setpLatitudeDMS(Coordinate pLatitudeDMS) {
+    public void setpLatitudeDMS(String pLatitudeDMS) {
         this.pLatitudeDMS = pLatitudeDMS;
     }
 
-    public Coordinate getpLongitudeDMS() {
+    public String getpLongitudeDMS() {
         return pLongitudeDMS;
     }
 
-    public void setpLongitudeDMS(Coordinate pLongitudeDMS) {
+    public void setpLongitudeDMS(String pLongitudeDMS) {
         this.pLongitudeDMS = pLongitudeDMS;
     }
 
-    public double getpLatitudeDD() {
+    public String getpLatitudeDD() {
         return pLatitudeDD;
     }
 
-    public void setpLatitudeDD(double pLatitudeDD) {
+    public void setpLatitudeDD(String pLatitudeDD) {
         this.pLatitudeDD = pLatitudeDD;
     }
 
-    public double getpLongitudeDD() {
+    public String getpLongitudeDD() {
         return pLongitudeDD;
     }
 
-    public void setpLongitudeDD(double pLongitudeDD) {
+    public void setpLongitudeDD(String pLongitudeDD) {
         this.pLongitudeDD = pLongitudeDD;
     }
 
-    public Coordinate getsLatitude() {
+    public String getsLatitude() {
         return sLatitude;
     }
 
-    public void setsLatitude(Coordinate sLatitude) {
+    public void setsLatitude(String sLatitude) {
         this.sLatitude = sLatitude;
     }
 
-    public Coordinate getsLongitude() {
+    public String getsLongitude() {
         return sLongitude;
     }
 
-    public void setsLongitude(Coordinate sLongitude) {
+    public void setsLongitude(String sLongitude) {
         this.sLongitude = sLongitude;
     }
 
-    public int getElevationInMeters() {
+    public String getElevationInMeters() {
         return elevationInMeters;
     }
 
-    public void setElevationInMeters(int elevationInMeters) {
+    public void setElevationInMeters(String elevationInMeters) {
         this.elevationInMeters = elevationInMeters;
     }
 
-    public int getElevationInFeet() {
+    public String getElevationInFeet() {
         return elevationInFeet;
     }
 
-    public void setElevationInFeet(int elevationInFeet) {
+    public void setElevationInFeet(String elevationInFeet) {
         this.elevationInFeet = elevationInFeet;
     }
 
@@ -210,6 +220,23 @@ public class GISRecord {
 
     public void setDateEdited(String dateEdited) {
         this.dateEdited = dateEdited;
+    }
+
+
+    public String getsLatitudeDD() {
+        return sLatitudeDD;
+    }
+
+    public void setsLatitudeDD(String sLatitudeDD) {
+        this.sLatitudeDD = sLatitudeDD;
+    }
+
+    public String getsLongitudeDD() {
+        return sLongitudeDD;
+    }
+
+    public void setsLongitudeDD(String sLongitudeDD) {
+        this.sLongitudeDD = sLongitudeDD;
     }
 
 }

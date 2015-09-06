@@ -8,10 +8,10 @@
 public class RecordReporter {
 
     private long offset;
-    private long fID;
+    private String fID;
 
 
-    public RecordReporter(long offset, long fID){
+    public RecordReporter(long offset, String fID){
 
         this.offset = offset;
         this.fID = fID;
@@ -21,7 +21,7 @@ public class RecordReporter {
         return offset;
     }
 
-    public long getfID() {
+    public String getfID() {
         return fID;
     }
 

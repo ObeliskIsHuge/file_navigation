@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 /**
  *
  *  Class controls the processing of the files
@@ -43,7 +45,17 @@ public class Processing {
      */
     private void processRecordLocations(){
 
+        try {
+            RecordReporter recordReport = gISRecordFile.processNextRecordLocation();
+            // Keeps running until all the records have been processed
+            while(recordReport != null){
+               outputFile.printRecordReporter(recordReport);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+        outputFile.printNewLine();
     }
 
     /***

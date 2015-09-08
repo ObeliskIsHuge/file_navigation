@@ -38,6 +38,27 @@ public class Processing {
 
         // Process all the record locations
         processRecordLocations();
+
+        // Processes the command file
+//        processCommands();
+
+        closeFiles();
+
+
+    }
+
+    /***
+     * Closes all the files
+     */
+    private void closeFiles(){
+        gISRecordFile.closeFile();
+        commandFile.closeFile();
+        outputFile.closeFile();
+    }
+
+
+    private void processCommands(){
+        commandFile.processesCommandFile();
     }
 
     /***
@@ -50,11 +71,11 @@ public class Processing {
             // Keeps running until all the records have been processed
             while(recordReport != null){
                outputFile.printRecordReporter(recordReport);
+                recordReport = gISRecordFile.processNextRecordLocation();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         outputFile.printNewLine();
     }
 

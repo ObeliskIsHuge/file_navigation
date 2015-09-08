@@ -1,4 +1,6 @@
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 /**
  *
@@ -73,6 +75,13 @@ public class FileOutput {
     public void printRecordReporter(RecordReporter recordReporter){
 
         writer.println("    " + recordReporter.getOffset() + "   " + recordReporter.getfID());
+    }
+
+    /***
+     * Closes the writer file
+     */
+    public void closeFile(){
+        writer.close();
     }
 
 

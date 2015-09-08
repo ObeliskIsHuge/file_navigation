@@ -60,8 +60,19 @@ public class FileNavigator {
         return new RecordReporter(offset , gisRecord.getfId());
     }
 
+    /***
+     * Closes the current file
+     */
+    public void closeFile(){
+        try {
+            currentFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-    public void processesCommands(){
+
+    public void processesCommandFile(){
         // TODO
     }
 

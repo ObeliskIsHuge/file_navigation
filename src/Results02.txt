@@ -1,0 +1,110 @@
+GIS data file contains the following records:
+
+     265   32150
+     416   3334
+     598   30720
+     761   8890
+     921   14144
+    1083   11397
+    1260   1501
+    1425   5075
+    1591   3520
+    1747   435
+    1901   3516
+    2055   1261
+    2188   12550
+    2364   9045
+    2531   6259
+    2695   28441
+    2859   1650
+    3017   4499
+    3188   28840
+    3310   11432
+    3472   9911
+    3628   31223
+    3781   26361
+    3937   1668
+    4098   23946
+    4269   10534
+    4440   32341
+    4601   9803
+    4766   27675
+    4931   26990
+    5093   401
+    5252   1448
+    5417   1500
+    5568   28116
+    5724   6362
+    5885   27102
+    6039   10081
+    6171   36295
+    6342   13210
+    6506   27265
+    6665   8950
+    6836   13567
+    7006   5971
+    7167   32612
+    7324   11803
+    7449   27752
+    7606   10138
+    7729   29744
+    7896   2850
+    8057   21596
+    8226   25375
+    8347   8080
+    8509   3306
+    8667   26855
+    8827   25450
+    9002   25452
+    9182   10858
+    9345   32527
+    9508   30578
+    9670   960
+    9832   13605
+   10002   10905
+   10156   12079
+
+1: show_latitude  	6342
+   34d 51m 39s North
+2: show_longitude  	7167
+   109d 1m 6s West
+3: show_elevation  	1260
+   6604
+4: show_elevation  	3937
+   5781
+5: show_longitude  	5568
+   109d 21m 25s West
+6: show_elevation  	6039
+   7073
+7: show_name  	4931
+   Bullard Canyon
+8: show_elevation  	9345
+   5121
+9: show_latitude  	2188
+   37d 0m 2s North
+10: show_longitude  	6506
+   109d 2m 58s West
+11: show_name  	-492
+   Offset is not positive
+12: show_elevation  	7466
+   Unaligned offset
+13: show_latitude  	9670
+   31d 20m 48s North
+14: show_latitude  	3781
+   32d 50m 15s North
+15: show_longitude  	1901
+   109d 2m 30s West
+16: show_name  	9832
+   White Clay Spring Wash
+17: show_latitude  	7324
+   32d 31m 46s North
+18: show_name  	2531
+   Iron Canyon
+19: show_latitude  	3472
+   32d 41m 44s North
+20: show_latitude  	11082
+   Offset too large
+21: show_latitude  	7006
+   36d 41m 21s North
+22: quit  	
+   Exiting

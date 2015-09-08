@@ -1,0 +1,98 @@
+GIS data file contains the following records:
+
+     265   6362
+     426   5075
+     592   27306
+     754   10173
+     915   6259
+    1079   26855
+    1239   25354
+    1398   26361
+    1554   28840
+    1676   1261
+    1809   1650
+    1967   1448
+    2132   3516
+    2286   26990
+    2448   4499
+    2619   2850
+    2780   25452
+    2960   32127
+    3085   8890
+    3245   10534
+    3416   34588
+    3582   5416
+    3757   29744
+    3924   27102
+    4078   10905
+    4232   25454
+    4397   12758
+    4556   8984
+    4722   34817
+    4877   1500
+    5028   8950
+    5199   3334
+    5381   25413
+    5538   10081
+    5670   12079
+    5839   34867
+    5994   3798
+    6162   3520
+    6318   13588
+    6487   3306
+    6645   22057
+    6764   25450
+    6939   1501
+    7104   8080
+    7266   25698
+    7427   26530
+    7583   11803
+    7708   12398
+    7872   960
+    8034   10858
+    8197   30578
+    8359   25468
+    8523   32123
+    8687   11239
+    8861   35887
+    9013   25663
+    9178   25947
+
+1: show_latitude  	9450
+   Offset too large
+2: show_elevation  	16
+   Unaligned offset
+3: show_latitude  	5028
+   32d 24m 2s North
+4: show_name  	8359
+   Conner Draw
+5: show_name  	6645
+   Geronimo Trail
+6: show_latitude  	7104
+   32d 23m 22s North
+7: show_longitude  	3582
+   109d 5m 19s West
+8: show_latitude  	8034
+   32d 48m 6s North
+9: show_latitude  	7266
+   32d 52m 4s North
+10: show_longitude  	1398
+   109d 11m 1s West
+11: show_latitude  	1809
+   36d 42m 18s North
+12: show_elevation  	3757
+   3980
+13: show_longitude  	5670
+   109d 8m 3s West
+14: show_latitude  	3924
+   33d 22m 38s North
+15: show_name  	754
+   Red Wash
+16: show_elevation  	592
+   5554
+17: show_name  	1967
+   Beclabito Wash
+18: show_name  	-416
+   Offset is not positive
+19: quit  	
+   Exiting

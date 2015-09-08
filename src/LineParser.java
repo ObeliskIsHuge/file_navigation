@@ -33,10 +33,10 @@ public class LineParser {
         int fieldCount = 0;
 
         // Keeps running until the end of the line is found
-        while(currentLine.charAt(startIndex) != '\n'){
+        while(endIndex < currentLine.length()){
 
             // Keeps running until the first '|' is found
-            while(currentLine.charAt(endIndex) != '|'){
+            while(endIndex == currentLine.length() - 1 && currentLine.charAt(endIndex) != '|'){
                 endIndex++;
             }
 

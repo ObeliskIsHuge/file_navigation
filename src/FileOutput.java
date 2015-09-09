@@ -1,6 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.io.*;
 
 /**
  *
@@ -14,7 +12,7 @@ public class FileOutput {
 //    private RandomAccessFile outputFile;
 //    private String lineTerminator;
 //    private File file;
-    private PrintWriter writer;
+    private RandomAccessFile writer;
 
     /***
      * Class constructor
@@ -23,7 +21,7 @@ public class FileOutput {
     public FileOutput(String fileName){
         File file = new File(fileName);
         try {
-            this.writer = new PrintWriter(file);
+            this.writer = new RandomAccessFile(file, "rw");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -58,14 +56,22 @@ public class FileOutput {
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-        writer.println(line);
+        try {
+            writer.writeChars(line);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /***
      * Prints a new line
      */
     public void printNewLine(){
-        writer.print("\n");
+        try {
+            writer.writeChar('\n');
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /***
@@ -74,14 +80,22 @@ public class FileOutput {
      */
     public void printRecordReporter(RecordReporter recordReporter){
 
-        writer.println("    " + recordReporter.getOffset() + "   " + recordReporter.getfID());
+        try {
+            writer.writeChars("    " + recordReporter.getOffset() + "   " + recordReporter.getfID());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /***
      * Closes the writer file
      */
     public void closeFile(){
-        writer.close();
+        try {
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

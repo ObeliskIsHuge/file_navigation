@@ -71,9 +71,24 @@ public class FileNavigator {
         }
     }
 
+    /***
+     * Returns the next command
+     * @return String that contains the next command
+     */
+    public String getNextCommand(){
 
-    public void processesCommandFile(){
-        // TODO
+        String currentLine = null;
+
+        try {
+            currentLine = currentFile.readLine();
+            while(currentLine.charAt(0) != ';'){
+                currentLine = currentFile.readLine();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return currentLine;
     }
 
 

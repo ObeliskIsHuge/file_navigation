@@ -9,10 +9,14 @@ import java.io.*;
  */
 public class FileOutput {
 
+
+    //TODO this class prints to the file instead of the console
+
 //    private RandomAccessFile outputFile;
 //    private String lineTerminator;
 //    private File file;
     private RandomAccessFile writer;
+    private int commandCount;
 
     /***
      * Class constructor
@@ -25,12 +29,7 @@ public class FileOutput {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-//        try {
-//            outputFile = new RandomAccessFile(file , "rw");
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        this.lineTerminator = System.getProperty("line.separator");
+        commandCount = 0;
     }
 
 
@@ -52,26 +51,24 @@ public class FileOutput {
      */
     public void printLine(String line){
 //        try {
-//            outputFile.writeChars(line + lineTerminator);
+//            writer.writeChars(line);
 //        } catch (IOException e) {
 //            e.printStackTrace();
 //        }
-        try {
-            writer.writeChars(line);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        System.out.println(line);
     }
 
     /***
      * Prints a new line
      */
     public void printNewLine(){
-        try {
-            writer.writeChar('\n');
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            writer.writeChar('\n');
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        System.out.print("\n");
     }
 
     /***
@@ -80,11 +77,12 @@ public class FileOutput {
      */
     public void printRecordReporter(RecordReporter recordReporter){
 
-        try {
-            writer.writeChars("    " + recordReporter.getOffset() + "   " + recordReporter.getfID());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            writer.writeChars("    " + recordReporter.getOffset() + "   " + recordReporter.getfID());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        System.out.println("    " + recordReporter.getOffset() + "   " + recordReporter.getfID());
     }
 
     /***

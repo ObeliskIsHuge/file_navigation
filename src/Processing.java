@@ -40,7 +40,7 @@ public class Processing {
         processRecordLocations();
 
         // Processes the command file
-//        processCommands();
+        processCommands();
 
         closeFiles();
 
@@ -56,9 +56,15 @@ public class Processing {
         outputFile.closeFile();
     }
 
-
+    /***
+     * Processes the command file
+     */
     private void processCommands(){
-        commandFile.processesCommandFile();
+
+        String commandLine = commandFile.getNextCommand();
+        String[] pieces = commandLine.split("\\s+");
+
+        //TODO Parse pieces string 
     }
 
     /***
@@ -80,7 +86,7 @@ public class Processing {
     }
 
     /***
-     *
+     * Prints the header information for the Results.txt file
      */
     private void begin(){
         outputFile.printHeader();

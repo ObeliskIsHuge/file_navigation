@@ -36,8 +36,14 @@ public class LineParser {
         while(endIndex < currentLine.length()){
 
             // Keeps running until the first '|' is found
-            while(endIndex == currentLine.length() - 1 && currentLine.charAt(endIndex) != '|'){
-                endIndex++;
+            while(currentLine.charAt(endIndex) != '|'){
+                if (endIndex < currentLine.length() - 1){
+                    endIndex++;
+                }
+                else {
+                    break;
+                }
+
             }
 
             // Will be true when we have a blank record

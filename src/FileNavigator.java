@@ -81,7 +81,12 @@ public class FileNavigator {
 
         try {
             currentLine = currentFile.readLine();
-            while(currentLine.charAt(0) != ';'){
+
+            // Checks to see if the end has been reached
+            if(currentLine == null){
+                return null;
+            }
+            while(currentLine.charAt(0) == ';'){
                 currentLine = currentFile.readLine();
             }
         } catch (IOException e) {
@@ -89,6 +94,42 @@ public class FileNavigator {
         }
 
         return currentLine;
+    }
+
+    /***
+     * Executes the "Show Name" command
+     * @param offset is the offset in the file
+     * @return
+     */
+    public long  commandShowName(long offset){
+        return -1;
+    }
+
+    /***
+     *
+     * @param offset
+     * @return
+     */
+    public long commandShowLatitude(long offset){
+        return -1;
+    }
+
+    /***
+     *
+     * @param offset
+     * @return
+     */
+    public long commandShowLongitude(long offset){
+        return -1;
+    }
+
+    /***
+     *
+     * @param offset
+     * @return
+     */
+    public long commandShowElevation(long offset){
+        return -1;
     }
 
 

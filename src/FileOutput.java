@@ -96,5 +96,9 @@ public class FileOutput {
         }
     }
 
+    public void stillImplementing(String command){
+        System.out.println("Still implementing: " + command);
+    }
+
 
 }

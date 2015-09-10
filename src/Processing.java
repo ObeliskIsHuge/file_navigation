@@ -62,9 +62,36 @@ public class Processing {
     private void processCommands(){
 
         String commandLine = commandFile.getNextCommand();
-        String[] pieces = commandLine.split("\\s+");
 
-        //TODO Parse pieces string 
+        // Keep running until all the commands have been processed
+        while (commandLine != null){
+
+            String[] pieces = commandLine.split("\\t");
+            // Decides which action to take
+            switch(pieces[0]) {
+
+                case "show_name":
+                    outputFile.stillImplementing("show_name");
+                    break;
+                case "show_latitude":
+                    outputFile.stillImplementing("show_latitude");
+                    break;
+                case "show_longitude":
+                    outputFile.stillImplementing("show_longitude");
+                    break;
+                case "show_elevation":
+                    outputFile.stillImplementing("show_elevation");
+                    break;
+                case "quit":
+                    outputFile.stillImplementing("quit");
+                    break;
+                default:
+                    // Do Nothing
+                    break;
+            }
+
+            commandLine = commandFile.getNextCommand();
+        }
     }
 
     /***

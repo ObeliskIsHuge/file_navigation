@@ -15,6 +15,8 @@ public class FileNavigator {
 
     private String lineTerminator;
     private RandomAccessFile currentFile;
+    private long finalOffset;
+    private long offsetAlign;
 
     /***
      * Class constructor
@@ -29,6 +31,24 @@ public class FileNavigator {
             e.printStackTrace();
         }
         lineTerminator = System.getProperty("line.separator");
+        finalOffset = -1;
+        offsetAlign = -1;
+    }
+
+    /***
+     *
+     * @return
+     */
+    public long getFinalOffset() {
+        return finalOffset;
+    }
+
+    /****
+     *
+     * @param finalOffset
+     */
+    public void setFinalOffset(long finalOffset) {
+        this.finalOffset = finalOffset;
     }
 
 
@@ -42,6 +62,7 @@ public class FileNavigator {
         // Discards the header line of the text file
         if(currentFile.getFilePointer() == 0 ){
             currentFile.readLine();
+            offsetAlign = currentFile.getFilePointer();
         }
 
         long offset = currentFile.getFilePointer();
@@ -50,6 +71,7 @@ public class FileNavigator {
         // Checks to see if the end has been reached
         if(currentLine == null){
 
+            this.finalOffset = offset;
             resetFilePointer();
             return null;
         }
@@ -101,8 +123,15 @@ public class FileNavigator {
      * @param offset is the offset in the file
      * @return
      */
-    public long  commandShowName(long offset){
-        return -1;
+    public String commandShowName(long offset){
+
+        String validOffset = validateOffset(offset);
+
+        // Checks to see if an error was found
+        if(validOffset != null){
+            return validOffset;
+        }
+        return null;
     }
 
     /***
@@ -133,7 +162,26 @@ public class FileNavigator {
     }
 
 
+    /****
+     * Checks to see if the offset is valid
+     * @param offset location of the offset
+     * @return null if no errors
+     *         String of the error if error is found
+     */
+    private String validateOffset(long offset){
 
+        // Checks to see if the offset is positive
+        if(offset < 0){
+            return "Offset not positive";
+            // Checks to see if the offset is within range
+        } else if (offset > finalOffset) {
+            return "Offset too large";
+            // Checks to see if the offset is aligned
+        } else if (offset < offsetAlign){
+            return "Unaligned offset";
+        }
+        return null;
+    }
 
     /***
      * Resets the location of the file pointer

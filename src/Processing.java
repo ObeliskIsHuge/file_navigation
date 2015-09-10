@@ -61,16 +61,24 @@ public class Processing {
      */
     private void processCommands(){
 
+        commandFile.setFinalOffset((gISRecordFile.getFinalOffset()));
         String commandLine = commandFile.getNextCommand();
+        long commandOffset = -1;
 
         // Keep running until all the commands have been processed
         while (commandLine != null){
 
             String[] pieces = commandLine.split("\\t");
+            // Checks to see if their is an offset
+            if(pieces.length > 1){
+                commandOffset = Long.parseLong(pieces[1]);
+            }
             // Decides which action to take
             switch(pieces[0]) {
 
                 case "show_name":
+
+                    commandFile.commandShowName(commandOffset);
                     outputFile.stillImplementing("show_name");
                     break;
                 case "show_latitude":

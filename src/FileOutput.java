@@ -29,7 +29,7 @@ public class FileOutput {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        commandCount = 0;
+        commandCount = 1;
     }
 
 
@@ -79,6 +79,7 @@ public class FileOutput {
     public void printCommandResponse(String commandLine , String response){
 
         System.out.println(commandCount + ": " + commandLine + "\n\t" + response);
+        commandCount++;
     }
 
     /***

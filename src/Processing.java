@@ -80,7 +80,7 @@ public class Processing {
 
                 case "show_name":
 
-                    response = commandFile.commandShowName(commandOffset);
+                    response = gISRecordFile.commandShowName(commandOffset);
                     outputFile.printCommandResponse(commandLine , response);
 //                    outputFile.stillImplementing("show_name");
                     break;
@@ -95,7 +95,7 @@ public class Processing {
                     break;
                 case "quit":
                     outputFile.printCommandResponse(commandLine, "Exiting");
-                    outputFile.stillImplementing("quit");
+//                    outputFile.stillImplementing("quit");
                     break;
                 default:
                     // Do Nothing

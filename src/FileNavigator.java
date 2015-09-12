@@ -214,7 +214,7 @@ public class FileNavigator {
 
         seekToPosition(firstRecordOffset);
         long currentOffset = getCurrentFilePointer();
-        long oldOffset = -1;
+//        long oldOffset = -1;
         String currentLine = readCurrentLine();
 
         // Runs until the end of the file is reached ( which should never happen )
@@ -222,7 +222,7 @@ public class FileNavigator {
 
             // Will be true when we've found the offset
             if(currentOffset == goalOffset){
-                seekToPosition(oldOffset);
+                seekToPosition(currentOffset);
                 return null;
                 // Will be true when we've passed our sought after offset
             } else if (currentOffset > goalOffset){
@@ -230,7 +230,7 @@ public class FileNavigator {
             }
 
             // Moves to the next line and updates the pointer
-            oldOffset = currentOffset;
+//            oldOffset = currentOffset;
             currentOffset = getCurrentFilePointer();
             currentLine = readCurrentLine();
         }

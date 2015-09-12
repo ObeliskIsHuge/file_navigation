@@ -64,7 +64,7 @@ public class Processing {
         commandFile.setFinalOffset(gISRecordFile.getFinalOffset());
         commandFile.setFirstRecordOffset(gISRecordFile.getFirstRecordOffset());
         String commandLine = commandFile.getNextCommand();
-        String response;
+        String response = "";
         long commandOffset = -1;
 
         // Keep running until all the commands have been processed
@@ -79,28 +79,26 @@ public class Processing {
             switch(pieces[0]) {
 
                 case "show_name":
-
                     response = gISRecordFile.commandShowName(commandOffset);
-                    outputFile.printCommandResponse(commandLine , response);
                     break;
                 case "show_latitude":
-                    outputFile.stillImplementing("show_latitude");
+                    response = gISRecordFile.commandShowLatitude(commandOffset);
                     break;
                 case "show_longitude":
-                    outputFile.stillImplementing("show_longitude");
+                    response = gISRecordFile.commandShowLongitude(commandOffset);
                     break;
                 case "show_elevation":
                     response = gISRecordFile.commandShowElevation(commandOffset);
-                    outputFile.printCommandResponse(commandLine , response);
                     break;
                 case "quit":
-                    outputFile.printCommandResponse(commandLine, "Exiting");
+                    response = "Exiting";
                     break;
                 default:
                     // Do Nothing
                     break;
             }
 
+            outputFile.printCommandResponse(commandLine , response);
             commandLine = commandFile.getNextCommand();
         }
     }

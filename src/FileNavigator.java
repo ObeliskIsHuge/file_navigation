@@ -39,32 +39,32 @@ public class FileNavigator {
     }
 
     /***
-     *
-     * @return
+     * Returns the location of the last record
+     * @return location of the last record
      */
     public long getFinalOffset() {
         return finalOffset;
     }
 
     /****
-     *
-     * @param finalOffset
+     * Sets the location of the last record
+     * @param finalOffset location of the last offset
      */
     public void setFinalOffset(long finalOffset) {
         this.finalOffset = finalOffset;
     }
 
     /***
-     *
-     * @return
+     *  Returns the offset of the first record
+     * @return offset of the first record
      */
     public long getFirstRecordOffset() {
         return firstRecordOffset;
     }
 
     /***
-     *
-     * @param firstRecordOffset
+     * Sets the first record
+     * @param firstRecordOffset new first record
      */
     public void setFirstRecordOffset(long firstRecordOffset) {
         this.firstRecordOffset = firstRecordOffset;
@@ -140,7 +140,7 @@ public class FileNavigator {
     /***
      * Executes the "Show Name" command
      * @param offset is the offset in the file
-     * @return
+     * @return correct record or error if one occurred
      */
     public String commandShowName(long offset){
 
@@ -159,34 +159,58 @@ public class FileNavigator {
     }
 
 
-    private GISRecord seekToRecord(long offset){
-
-        //TODO start here
-        return null;
-    }
+//    private GISRecord seekToRecord(long offset){
+//
+//        //TODO start here
+//        return null;
+//    }
 
     /***
-     *
-     * @param offset
-     * @return
+     *  Executes the show latitude command
+     * @param offset offset of the record
+     * @return correct record or error if one occurred
      */
-    public long commandShowLatitude(long offset){
-        return -1;
+    public String commandShowLatitude(long offset){
+
+        String validOffset = validateOffset(offset);
+
+        // Checks to see if an error was found
+        if(validOffset != null){
+            return validOffset;
+        }
+
+        // Reads the valid line and parses the line
+        LineParser line = new LineParser(readCurrentLine());
+        GISRecord record = line.buildGISRecord();
+
+        return latAndLongFormatConvert("latitude" , record.getpLatitudeDMS());
     }
 
     /***
-     *
-     * @param offset
-     * @return
+     *  Executes the show longitude command
+     * @param offset offset of the record
+     * @return correct record or error if one occurred
      */
-    public long commandShowLongitude(long offset){
-        return -1;
+    public String commandShowLongitude(long offset){
+
+        String validOffset = validateOffset(offset);
+
+        // Checks to see if an error was found
+        if(validOffset != null){
+            return validOffset;
+        }
+
+        // Reads the valid line and parses the line
+        LineParser line = new LineParser(readCurrentLine());
+        GISRecord record = line.buildGISRecord();
+
+        return latAndLongFormatConvert("longitude" , record.getpLongitudeDMS());
     }
 
     /***
-     *
-     * @param offset
-     * @return
+     * Executes the show elevation command
+     * @param offset offset of the record
+     * @return correct record or error if one occurred
      */
     public String commandShowElevation(long offset){
 
@@ -225,7 +249,7 @@ public class FileNavigator {
         } else if (goalOffset > finalOffset) {
             return "Offset too large";
             // Checks to see if the offset is aligned
-        } else if (goalOffset < firstRecordOffset){ //TODO this may need to be fixed
+        } else if (goalOffset < firstRecordOffset){
             return "Unaligned offset";
         }
 
@@ -306,5 +330,73 @@ public class FileNavigator {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    /***
+     * Converts a string representing the latitude or longitude and formats it properly
+     * @param latOrLong latitude or longitude
+     * @param line full line of the record
+     * @return string in the converted format
+     */
+    private String latAndLongFormatConvert(String latOrLong , String line){
+
+        String direction = "";
+        String seconds;
+        String minutes;
+        String days;
+        StringBuilder stringBuilder = new StringBuilder(line);
+        int lineLength = stringBuilder.length();
+
+        // holds the symbol for direction
+        char directionChar = stringBuilder.charAt(lineLength - 1);
+
+        switch (directionChar){
+
+            case 'N':
+                direction = "North";
+                break;
+            case 'E':
+                direction = "East";
+                break;
+            case 'S':
+                direction = "South";
+                break;
+            case 'W':
+                direction = "West";
+                break;
+            default:
+                // Do nothing
+                break;
+        }
+
+        seconds = stringBuilder.substring(lineLength - 2 , lineLength - 3);
+
+        // gets rid of the unnecessary '0' if it exists
+        if(seconds.charAt(0) == '0'){
+            seconds = "" + seconds.charAt(1);
+        }
+
+        minutes = stringBuilder.substring(lineLength - 4 , lineLength - 5);
+        // gets rid of the unnecessary '0' if it exists
+        if(minutes.charAt(0) == '0'){
+            minutes = "" + minutes.charAt(1);
+        }
+
+        // checks to see if the we're converting for a latitude
+        if(latOrLong.equals("latitude")){
+            days = stringBuilder.substring(lineLength - 6 , lineLength - 7);
+            if (days.charAt(0) == '0'){
+                days = "" + days.charAt(1);
+            }
+            // will be true when we're converting for a longitude
+        } else {
+            days = stringBuilder.substring(lineLength - 6 , lineLength - 8);
+            if (days.charAt(0) == '0'){
+                days = "" + days.charAt(1) + days.charAt(2);
+            }
+        }
+
+        return days + "d " + minutes + "m " + seconds + "s " + direction;
     }
 }

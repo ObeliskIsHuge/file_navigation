@@ -370,29 +370,29 @@ public class FileNavigator {
                 break;
         }
 
-        seconds = stringBuilder.substring(lineLength - 2 , lineLength - 3);
+        seconds = stringBuilder.substring(lineLength - 3 , lineLength - 1);
 
         // gets rid of the unnecessary '0' if it exists
-        if(seconds.charAt(0) == '0'){
+        if(seconds.charAt(0) == '0' && seconds.length() > 1){
             seconds = "" + seconds.charAt(1);
         }
 
-        minutes = stringBuilder.substring(lineLength - 4 , lineLength - 5);
+        minutes = stringBuilder.substring(lineLength - 5 , lineLength - 3);
         // gets rid of the unnecessary '0' if it exists
-        if(minutes.charAt(0) == '0'){
+        if(minutes.charAt(0) == '0'&& minutes.length() > 1){
             minutes = "" + minutes.charAt(1);
         }
 
         // checks to see if the we're converting for a latitude
         if(latOrLong.equals("latitude")){
-            days = stringBuilder.substring(lineLength - 6 , lineLength - 7);
-            if (days.charAt(0) == '0'){
+            days = stringBuilder.substring(lineLength - 7 , lineLength - 5);
+            if (days.charAt(0) == '0' && days.length() > 1){
                 days = "" + days.charAt(1);
             }
             // will be true when we're converting for a longitude
         } else {
-            days = stringBuilder.substring(lineLength - 6 , lineLength - 8);
-            if (days.charAt(0) == '0'){
+            days = stringBuilder.substring(lineLength - 8 , lineLength - 5);
+            if (days.charAt(0) == '0' && days.length() > 1){
                 days = "" + days.charAt(1) + days.charAt(2);
             }
         }

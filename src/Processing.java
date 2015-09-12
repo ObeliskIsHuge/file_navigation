@@ -61,8 +61,10 @@ public class Processing {
      */
     private void processCommands(){
 
-        commandFile.setFinalOffset((gISRecordFile.getFinalOffset()));
+        commandFile.setFinalOffset(gISRecordFile.getFinalOffset());
+        commandFile.setFirstRecordOffset(gISRecordFile.getFirstRecordOffset());
         String commandLine = commandFile.getNextCommand();
+        String response;
         long commandOffset = -1;
 
         // Keep running until all the commands have been processed
@@ -78,8 +80,9 @@ public class Processing {
 
                 case "show_name":
 
-                    commandFile.commandShowName(commandOffset);
-                    outputFile.stillImplementing("show_name");
+                    response = commandFile.commandShowName(commandOffset);
+                    outputFile.printCommandResponse(commandLine , response);
+//                    outputFile.stillImplementing("show_name");
                     break;
                 case "show_latitude":
                     outputFile.stillImplementing("show_latitude");
@@ -91,6 +94,7 @@ public class Processing {
                     outputFile.stillImplementing("show_elevation");
                     break;
                 case "quit":
+                    outputFile.printCommandResponse(commandLine, "Exiting");
                     outputFile.stillImplementing("quit");
                     break;
                 default:

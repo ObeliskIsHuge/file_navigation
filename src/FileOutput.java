@@ -72,6 +72,16 @@ public class FileOutput {
     }
 
     /***
+     * Formats and prints the command output
+     * @param commandLine command from the command file
+     * @param response result from the execution of that command
+     */
+    public void printCommandResponse(String commandLine , String response){
+
+        System.out.println(commandCount + ": " + commandLine + "\n\t" + response);
+    }
+
+    /***
      * Formats and prints a RecordReporter object
      * @param recordReporter RecordReporter that will be printed
      */

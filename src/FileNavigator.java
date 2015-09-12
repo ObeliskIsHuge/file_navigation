@@ -13,10 +13,13 @@ import java.io.RandomAccessFile;
 public class FileNavigator {
 
 
-    private String lineTerminator;
+//    private String lineTerminator;
+    // Current file that is being processed
     private RandomAccessFile currentFile;
+    // Holds location of the last valid offset
     private long finalOffset;
-    private long offsetAlign;
+    // Holds the location of the first official character
+    private long firstRecordOffset;
 
     /***
      * Class constructor
@@ -30,9 +33,9 @@ public class FileNavigator {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        lineTerminator = System.getProperty("line.separator");
+//        lineTerminator = System.getProperty("line.separator");
         finalOffset = -1;
-        offsetAlign = -1;
+        firstRecordOffset = -1;
     }
 
     /***
@@ -51,6 +54,22 @@ public class FileNavigator {
         this.finalOffset = finalOffset;
     }
 
+    /***
+     *
+     * @return
+     */
+    public long getFirstRecordOffset() {
+        return firstRecordOffset;
+    }
+
+    /***
+     *
+     * @param firstRecordOffset
+     */
+    public void setFirstRecordOffset(long firstRecordOffset) {
+        this.firstRecordOffset = firstRecordOffset;
+    }
+
 
     /***
      * Processes the next line of Records
@@ -62,7 +81,7 @@ public class FileNavigator {
         // Discards the header line of the text file
         if(currentFile.getFilePointer() == 0 ){
             currentFile.readLine();
-            offsetAlign = currentFile.getFilePointer();
+            firstRecordOffset = currentFile.getFilePointer();
         }
 
         long offset = currentFile.getFilePointer();
@@ -131,6 +150,18 @@ public class FileNavigator {
         if(validOffset != null){
             return validOffset;
         }
+
+        // Reads the valid line and parses the line
+        LineParser line = new LineParser(readCurrentLine());
+        GISRecord record = line.buildGISRecord();
+
+        return record.getfName();
+    }
+
+
+    private GISRecord seekToRecord(long offset){
+
+        //TODO start here
         return null;
     }
 
@@ -164,23 +195,89 @@ public class FileNavigator {
 
     /****
      * Checks to see if the offset is valid
-     * @param offset location of the offset
+     * @param goalOffset location of the offset
      * @return null if no errors
      *         String of the error if error is found
      */
-    private String validateOffset(long offset){
+    private String validateOffset(long goalOffset){
 
         // Checks to see if the offset is positive
-        if(offset < 0){
+        if(goalOffset < 0){
             return "Offset not positive";
             // Checks to see if the offset is within range
-        } else if (offset > finalOffset) {
+        } else if (goalOffset > finalOffset) {
             return "Offset too large";
             // Checks to see if the offset is aligned
-        } else if (offset < offsetAlign){
+        } else if (goalOffset < firstRecordOffset){ //TODO this may need to be fixed
             return "Unaligned offset";
         }
+
+        seekToPosition(firstRecordOffset);
+        long currentOffset = getCurrentFilePointer();
+        long oldOffset = -1;
+        String currentLine = readCurrentLine();
+
+        // Runs until the end of the file is reached ( which should never happen )
+        while(currentLine != null){
+
+            // Will be true when we've found the offset
+            if(currentOffset == goalOffset){
+                seekToPosition(oldOffset);
+                return null;
+                // Will be true when we've passed our sought after offset
+            } else if (currentOffset > goalOffset){
+                return "Unaligned offset";
+            }
+
+            // Moves to the next line and updates the pointer
+            oldOffset = currentOffset;
+            currentOffset = getCurrentFilePointer();
+            currentLine = readCurrentLine();
+        }
         return null;
+    }
+
+    /***
+     * Seeks to the position that the parameter specifies
+     * @param offset position that will be seeked to
+     */
+    private void seekToPosition(long offset){
+        try {
+            currentFile.seek(offset);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /***
+     * Returns the offset of the current file pointer
+     * @return offset of the current file pointer
+     */
+    private long getCurrentFilePointer(){
+        long currentOffset = -1;
+        try {
+            currentOffset = currentFile.getFilePointer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return currentOffset;
+    }
+
+    /***
+     * Reads the line that currentFile is currently pointing at
+     * @return String of the currentLine
+     *         null if the end of the file has been reached
+     */
+    private String readCurrentLine(){
+
+        String currentLine = null;
+        try {
+            currentLine = currentFile.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return currentLine;
     }
 
     /***

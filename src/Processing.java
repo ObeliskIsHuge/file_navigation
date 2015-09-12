@@ -82,7 +82,6 @@ public class Processing {
 
                     response = gISRecordFile.commandShowName(commandOffset);
                     outputFile.printCommandResponse(commandLine , response);
-//                    outputFile.stillImplementing("show_name");
                     break;
                 case "show_latitude":
                     outputFile.stillImplementing("show_latitude");
@@ -91,11 +90,11 @@ public class Processing {
                     outputFile.stillImplementing("show_longitude");
                     break;
                 case "show_elevation":
-                    outputFile.stillImplementing("show_elevation");
+                    response = gISRecordFile.commandShowElevation(commandOffset);
+                    outputFile.printCommandResponse(commandLine , response);
                     break;
                 case "quit":
                     outputFile.printCommandResponse(commandLine, "Exiting");
-//                    outputFile.stillImplementing("quit");
                     break;
                 default:
                     // Do Nothing

@@ -188,8 +188,25 @@ public class FileNavigator {
      * @param offset
      * @return
      */
-    public long commandShowElevation(long offset){
-        return -1;
+    public String commandShowElevation(long offset){
+
+        String validOffset = validateOffset(offset);
+
+        // Checks to see if an error was found
+        if(validOffset != null){
+            return validOffset;
+        }
+
+        // Reads the valid line and parses the line
+        LineParser line = new LineParser(readCurrentLine());
+        GISRecord record = line.buildGISRecord();
+
+        // Checks to see if an elevation exists
+        if (record.getElevationInFeet().equals("")){
+            return "Elevation not given";
+        }
+
+        return record.getElevationInFeet();
     }
 
 

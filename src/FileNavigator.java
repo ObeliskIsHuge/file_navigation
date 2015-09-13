@@ -12,8 +12,6 @@ import java.io.RandomAccessFile;
  */
 public class FileNavigator {
 
-
-//    private String lineTerminator;
     // Current file that is being processed
     private RandomAccessFile currentFile;
     // Holds location of the last valid offset
@@ -33,7 +31,6 @@ public class FileNavigator {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-//        lineTerminator = System.getProperty("line.separator");
         finalOffset = -1;
         firstRecordOffset = -1;
     }
@@ -158,13 +155,6 @@ public class FileNavigator {
         return record.getfName();
     }
 
-
-//    private GISRecord seekToRecord(long offset){
-//
-//        //TODO start here
-//        return null;
-//    }
-
     /***
      *  Executes the show latitude command
      * @param offset offset of the record
@@ -255,7 +245,6 @@ public class FileNavigator {
 
         seekToPosition(firstRecordOffset);
         long currentOffset = getCurrentFilePointer();
-//        long oldOffset = -1;
         String currentLine = readCurrentLine();
 
         // Runs until the end of the file is reached ( which should never happen )
@@ -271,7 +260,6 @@ public class FileNavigator {
             }
 
             // Moves to the next line and updates the pointer
-//            oldOffset = currentOffset;
             currentOffset = getCurrentFilePointer();
             currentLine = readCurrentLine();
         }

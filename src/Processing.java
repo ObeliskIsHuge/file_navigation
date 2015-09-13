@@ -34,7 +34,7 @@ public class Processing {
      */
     public void processFiles(){
 
-        begin(); // TODO I could remove this method
+        begin();
 
         // Process all the record locations
         processRecordLocations();

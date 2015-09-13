@@ -9,13 +9,7 @@ import java.io.*;
  */
 public class FileOutput {
 
-
-    //TODO this class prints to the file instead of the console
-
-//    private RandomAccessFile outputFile;
-//    private String lineTerminator;
-//    private File file;
-    private RandomAccessFile writer;
+    private PrintWriter writer;
     private int commandCount;
 
     /***
@@ -25,7 +19,7 @@ public class FileOutput {
     public FileOutput(String fileName){
         File file = new File(fileName);
         try {
-            this.writer = new RandomAccessFile(file, "rw");
+            this.writer = new PrintWriter(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -50,25 +44,14 @@ public class FileOutput {
      * @param line String that will be printed
      */
     public void printLine(String line){
-//        try {
-//            writer.writeChars(line);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        System.out.println(line);
+        writer.println(line);
     }
 
     /***
      * Prints a new line
      */
     public void printNewLine(){
-//        try {
-//            writer.writeChar('\n');
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        System.out.print("\n");
+        writer.print("\n");
     }
 
     /***
@@ -78,7 +61,7 @@ public class FileOutput {
      */
     public void printCommandResponse(String commandLine , String response){
 
-        System.out.println(commandCount + ": " + commandLine + "\n\t" + response);
+        writer.println(commandCount + ": " + commandLine + "\n\t" + response);
         commandCount++;
     }
 
@@ -87,29 +70,13 @@ public class FileOutput {
      * @param recordReporter RecordReporter that will be printed
      */
     public void printRecordReporter(RecordReporter recordReporter){
-
-//        try {
-//            writer.writeChars("    " + recordReporter.getOffset() + "   " + recordReporter.getfID());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-        System.out.println("    " + recordReporter.getOffset() + "   " + recordReporter.getfID());
+        writer.println("    " + recordReporter.getOffset() + "   " + recordReporter.getfID());
     }
 
     /***
      * Closes the writer file
      */
     public void closeFile(){
-        try {
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        writer.close();
     }
-
-    public void stillImplementing(String command){
-        System.out.println("Still implementing: " + command);
-    }
-
-
 }

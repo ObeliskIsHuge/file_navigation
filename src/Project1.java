@@ -16,6 +16,13 @@
  *
  * Main method class that starts the program
  *
+ *
+ * This program is designed to parse a Command File
+ * and execute the commands on a GISData file, and
+ * print the results in a Results file.
+ *
+ * 
+ *
  * @author Brandon Potts
  * @version August 29, 2015
  */

@@ -1,4 +1,6 @@
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 
 /**
  *
@@ -9,7 +11,9 @@ import java.io.*;
  */
 public class FileOutput {
 
+    // Object that handles the output writing of the file
     private PrintWriter writer;
+    // Keeps track of how many commands have been printed
     private int commandCount;
 
     /***
@@ -17,6 +21,7 @@ public class FileOutput {
      * @param fileName name of the file
      */
     public FileOutput(String fileName){
+        // Creates new file
         File file = new File(fileName);
         try {
             this.writer = new PrintWriter(file);

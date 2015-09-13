@@ -99,10 +99,10 @@ public class LineParser {
                 case 12: currentRecord.setsLongitude(currentField);
                     break;
                 // sets the Source Latitude (dec deg)
-                case 13: currentRecord.setsLatitudeDD(currentField);
+                case 13: currentRecord.setSLatitudeDD(currentField);
                     break;
                 // sets the Source Longitude (dec deg)
-                case 14: currentRecord.setsLongitudeDD(currentField);
+                case 14: currentRecord.setSLongitudeDD(currentField);
                     break;
                 // sets the Feature Elevation in Meters
                 case 15: currentRecord.setElevationInMeters(currentField);

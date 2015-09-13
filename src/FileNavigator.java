@@ -92,7 +92,9 @@ public class FileNavigator {
             return null;
         }
 
+        // Object will be used to parse the current line
         LineParser parsedLine = new LineParser(currentLine);
+        // Builds a new GIS Record from the line
         GISRecord gisRecord = parsedLine.buildGISRecord();
 
         return new RecordReporter(offset , gisRecord.getfId());
@@ -115,6 +117,7 @@ public class FileNavigator {
      */
     public String getNextCommand(){
 
+        // Variable will hold the currentLine
         String currentLine = null;
 
         try {
@@ -141,6 +144,7 @@ public class FileNavigator {
      */
     public String commandShowName(long offset){
 
+        // Holds the data that reports if the offset is valid
         String validOffset = validateOffset(offset);
 
         // Checks to see if an error was found
@@ -162,6 +166,7 @@ public class FileNavigator {
      */
     public String commandShowLatitude(long offset){
 
+        // Holds the data that reports if the offset is valid
         String validOffset = validateOffset(offset);
 
         // Checks to see if an error was found
@@ -183,6 +188,7 @@ public class FileNavigator {
      */
     public String commandShowLongitude(long offset){
 
+        // Holds the data that reports if the offset is valid
         String validOffset = validateOffset(offset);
 
         // Checks to see if an error was found
@@ -204,6 +210,7 @@ public class FileNavigator {
      */
     public String commandShowElevation(long offset){
 
+        // Holds the data that reports if the offset is valid
         String validOffset = validateOffset(offset);
 
         // Checks to see if an error was found
@@ -244,6 +251,8 @@ public class FileNavigator {
         }
 
         seekToPosition(firstRecordOffset);
+
+        // Two variables hold the currentOffset and current Line
         long currentOffset = getCurrentFilePointer();
         String currentLine = readCurrentLine();
 
@@ -299,6 +308,7 @@ public class FileNavigator {
      */
     private String readCurrentLine(){
 
+        // holds the currentLine
         String currentLine = null;
         try {
             currentLine = currentFile.readLine();
@@ -329,6 +339,8 @@ public class FileNavigator {
      */
     private String latAndLongFormatConvert(String latOrLong , String line){
 
+        // Holds the parts of the line that represent the different parts
+        // of time and direction
         String direction = "";
         String seconds;
         String minutes;
